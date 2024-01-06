@@ -16,4 +16,5 @@ public class EmpController {
 		logger.debug("Home controller is being called ");
 		return "home";
 	}
+	
 }
