@@ -19,7 +19,7 @@ public class EmployeeData {
 		empList.add(new Employee(3333,"Sohan","sohan@gmail.com","3339383943","nowhere","Java Dev","IT"));
 	}
 	
-	void add(Employee e) {
+	void addEmployee(Employee e) {
 		empList.add(e);
 	}
 	
@@ -27,6 +27,17 @@ public class EmployeeData {
 		
 		return empList;
 	}
+	
+	public Employee getEmployee(int id){
+		
+		for(Employee e: empList) {
+			if(e.getId()==id) {
+				return e;
+			}
+		}
+		return null;
+	}
+	
 	
 	
 }
