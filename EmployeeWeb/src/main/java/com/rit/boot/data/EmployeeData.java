@@ -28,7 +28,7 @@ public class EmployeeData {
 		return empList;
 	}
 	
-	public Employee getEmployee(int id){
+	public Employee getEmployeeById(int id){
 		
 		for(Employee e: empList) {
 			if(e.getId()==id) {
