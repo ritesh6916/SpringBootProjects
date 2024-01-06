@@ -6,9 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,17 +32,23 @@ public class EmpController {
 		return "home";
 	}
 
-	@GetMapping("/employees")
+	@GetMapping("/employee")
 	public ArrayList<Employee> getEmployees() {
-		logger.debug("All employee Details Provided");
+		logger.debug("Get request for All employee");
 		return empData.getAllEmployee();
+		
+		//To Call it: http://localhost:8080/MyApp/employee
 	}
 
-	/*
-	 * @GetMapping("/employee/{id}") public Employee getEmployee(@PathVariable("id")
-	 * int id) { return empData.getEmployee(id); }
-	 */
-
+	@GetMapping("/employee/{id}")
+	public Employee getEmployee(@PathVariable int id) {
+		logger.debug("Get request for " + id );
+		return empData.getEmployeeById(id);
+		
+		//To call using path variable ex: "http://localhost:8080/MyApp/employee/6916"
+	}
+	
+	
 	/*
 	 * @PostMapping("/employee") public void addNewEmployee(@ModelAttribute Employee
 	 * employee) { System.out.println(employee); }
