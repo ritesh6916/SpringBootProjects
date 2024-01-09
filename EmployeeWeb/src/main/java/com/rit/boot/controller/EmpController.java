@@ -6,7 +6,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,10 +27,9 @@ public class EmpController {
 
 	Logger logger = LoggerFactory.getLogger(EmpController.class);
 
-	@RequestMapping(path = "/home", method = RequestMethod.GET)
+	@RequestMapping(path = "/info", method = RequestMethod.GET)
 	public String HomeController() {
-		logger.debug("Home controller is being called ");
-		logger.info("Home info called");
+		logger.debug("info called");
 		return "home";
 	}
 
@@ -48,9 +49,12 @@ public class EmpController {
 		//To call using path variable ex: "http://localhost:8080/MyApp/employee/6916"
 	}
 	
+	@PostMapping(path="/employee")
+	public void addEmployee(@ModelAttribute Employee employee) {
+		logger.debug("request to add employee with ID: "+employee.getId()+" name: "+employee.getName());
+		empData.addEmployee(employee);
+	}
 	
-	/*
-	 * @PostMapping("/employee") public void addNewEmployee(@ModelAttribute Employee
-	 * employee) { System.out.println(employee); }
-	 */
+	
+	
 }
