@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,24 +38,32 @@ public class EmpController {
 	public ArrayList<Employee> getEmployees() {
 		logger.debug("Get request for All employee");
 		return empData.getAllEmployee();
-		
-		//To Call it: http://localhost:8080/MyApp/employee
+
+		// To Call it: http://localhost:8080/MyApp/employee
 	}
 
 	@GetMapping("/employee/{id}")
 	public Employee getEmployee(@PathVariable int id) {
-		logger.debug("Get request for " + id );
+		logger.debug("Get request for " + id);
 		return empData.getEmployeeById(id);
-		
-		//To call using path variable ex: "http://localhost:8080/MyApp/employee/6916"
+
+		// To call using path variable ex: "http://localhost:8080/MyApp/employee/6916"
 	}
-	
-	@PostMapping(path="/employee")
+
+	@PostMapping(path = "/employee")
 	public void addEmployee(@ModelAttribute Employee employee) {
-		logger.debug("request to add employee with ID: "+employee.getId()+" name: "+employee.getName());
+		logger.debug("request to add employee with ID: " + employee.getId() + " name: " + employee.getName());
 		empData.addEmployee(employee);
+
+		// we can make a POST request giving the details in Postman-> Body form-data
+		// (key-value pair)
 	}
-	
-	
-	
+
+	@DeleteMapping(path = "/employee/{id}")
+	public void deleteEmployee(@PathVariable("id") int id) {
+		logger.debug("Delete request for ID: " + id);
+		empData.deleteEmployee(id);
+		
+		// Delete request form POSTMAN ex: "http://localhost:8080/MyApp/employee/6916"
+	}
 }
