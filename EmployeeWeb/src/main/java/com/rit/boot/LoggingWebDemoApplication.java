@@ -10,5 +10,4 @@ public class LoggingWebDemoApplication {
 		SpringApplication.run(LoggingWebDemoApplication.class, args);
 		
 	}
-
 }
