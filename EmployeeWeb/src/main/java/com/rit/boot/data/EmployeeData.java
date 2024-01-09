@@ -19,7 +19,7 @@ public class EmployeeData {
 		empList.add(new Employee(3333,"Sohan","sohan@gmail.com","3339383943","nowhere","Java Dev","IT"));
 	}
 	
-	void addEmployee(Employee e) {
+	public void addEmployee(Employee e) {
 		empList.add(e);
 	}
 	
