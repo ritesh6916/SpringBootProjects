@@ -2,6 +2,8 @@ package com.rit.boot.data;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.rit.boot.entity.Employee;
@@ -10,6 +12,8 @@ import com.rit.boot.entity.Employee;
 public class EmployeeData {
 
 	private static ArrayList<Employee> empList = new ArrayList<>();
+	
+	Logger logger = LoggerFactory.getLogger(EmployeeData.class);
 	
 	static {
 		
@@ -38,6 +42,22 @@ public class EmployeeData {
 		return null;
 	}
 	
-	
-	
+	public void deleteEmployee(int id) {
+		int indexOf=0;
+		for(Employee e: empList) {
+			if(e.getId()==id) {
+				indexOf = empList.indexOf(e);
+			}
+		}
+		if(indexOf!=0) {
+			empList.remove(indexOf);
+		}
+		else {
+			try {
+			throw new NullPointerException();
+			}catch(NullPointerException e) {
+				logger.debug("The data is not present for ID: "+id);
+			}
+		}
+	}
 }
