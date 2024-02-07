@@ -1,11 +1,26 @@
 package com.ritesh.boot.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity(name = "books")   // in case of different table name and class name
 public class Book {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO) // for auto increment  
 	private int id;
+
+	@Column(name = "book_name")   // provide if field name & column name is different
 	private String name;
-	private String publication;
+	
+	private String publication;   // @Column not required if field and column name is same
+
 	private String author;
+
+	@Column(name = "book_price")
 	private double price;
 
 	public Book() {
