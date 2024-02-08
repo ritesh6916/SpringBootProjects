@@ -5,8 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity(name = "books")   // in case of different table name and class name
+@Entity   // in case of different table name and class name
+@Table(name = "books")
 public class Book {
 
 	@Id
