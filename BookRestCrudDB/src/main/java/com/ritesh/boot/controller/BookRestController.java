@@ -7,10 +7,15 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ritesh.boot.entity.Book;
@@ -77,5 +82,27 @@ public class BookRestController {
 		}
 		return list;
 	}
+	
+	// To Update price by ID
+	@PutMapping("/book")
+	public Book updateBookByID(@RequestBody Book tempBook) {
+		
+		book = getBookById(tempBook.getId());
+		return book;
+	}
+	
+	//To Delete a book by ID
+	@DeleteMapping("/book/{id}")
+	public boolean deleteBookById(@RequestParam("id") int id ) {
+		repository.deleteById(id);
+		return false;
+	}
+	
+	//To Delete all books 
+		@DeleteMapping("/book/{id}")
+		public boolean deleteAllBooks() {
+			repository.deleteAll();
+			return false;
+		}
 	
 }
