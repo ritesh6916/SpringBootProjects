@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ritesh.boot.entity.Book;
@@ -70,11 +68,11 @@ public class BookRestController {
 			return null;
 		}
 	}
-	
-	// To get all books 
+
+	// To get all books
 	@GetMapping(path = "/book")
 	public List<Book> getAllBooks() {
-		
+
 		List<Book> list = new ArrayList<Book>();
 		Iterable<Book> all = repository.findAll();
 		for (Book book : all) {
@@ -82,27 +80,27 @@ public class BookRestController {
 		}
 		return list;
 	}
-	
+
 	// To Update price by ID
 	@PutMapping("/book")
 	public Book updateBookByID(@RequestBody Book tempBook) {
-		
-		book = getBookById(tempBook.getId());
+
+		book = repository.save(tempBook); // save method will work as update if we pass same existing ID and provide
+											// respective changes.
 		return book;
 	}
-	
-	//To Delete a book by ID
+
+	// To Delete a book by ID
 	@DeleteMapping("/book/{id}")
-	public boolean deleteBookById(@PathVariable("id") int id ) {
+	public boolean deleteBookById(@PathVariable("id") int id) {
 		repository.deleteById(id);
 		return false;
 	}
-	
-	//To Delete all books 
-		@DeleteMapping("/book")
-		public boolean deleteAllBooks() {
-			repository.deleteAll();
-			return false;
-		}
-	
+
+	// To Delete all books
+	@DeleteMapping("/book")
+	public boolean deleteAllBooks() {
+		repository.deleteAll();
+		return false;
+	}
 }
