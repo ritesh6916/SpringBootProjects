@@ -93,13 +93,13 @@ public class BookRestController {
 	
 	//To Delete a book by ID
 	@DeleteMapping("/book/{id}")
-	public boolean deleteBookById(@RequestParam("id") int id ) {
+	public boolean deleteBookById(@PathVariable("id") int id ) {
 		repository.deleteById(id);
 		return false;
 	}
 	
 	//To Delete all books 
-		@DeleteMapping("/book/{id}")
+		@DeleteMapping("/book")
 		public boolean deleteAllBooks() {
 			repository.deleteAll();
 			return false;
