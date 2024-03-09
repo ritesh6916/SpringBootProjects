@@ -13,8 +13,9 @@ import com.ritesh.survey.templates.Survey;
 public class SurveyService {
 
 	public SurveyService() {
-		
+
 	}
+
 	private static List<Survey> surveys = new ArrayList<>();
 
 	static {
@@ -36,7 +37,16 @@ public class SurveyService {
 	}
 
 	public List<Survey> getAllSurveys() {
-		
+
 		return surveys;
+	}
+
+	public Survey getSurveyById(String surveyId) {
+		for (Survey s : surveys) {
+			if (s.getId().equalsIgnoreCase(surveyId)) {
+				return s;
+			}
+		}
+		return null;
 	}
 }

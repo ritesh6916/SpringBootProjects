@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ritesh.survey.service.SurveyService;
@@ -20,4 +21,11 @@ public class SurveyController {
 		List<Survey> surveys = surveyService.getAllSurveys();
 		return surveys;
 	}
+
+	@GetMapping("/surveys/{surveyId}")
+	public Survey getSurveyById(@PathVariable String surveyId) {
+		Survey survey = surveyService.getSurveyById(surveyId);
+		return survey;
+	}
+
 }
