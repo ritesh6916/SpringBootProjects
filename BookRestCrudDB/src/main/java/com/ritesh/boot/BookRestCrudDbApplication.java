@@ -22,5 +22,4 @@ public class BookRestCrudDbApplication {
 		 * bookRepository.save(book);
 		 */
 	}
-
 }
