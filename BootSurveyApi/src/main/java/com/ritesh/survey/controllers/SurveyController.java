@@ -43,4 +43,13 @@ public class SurveyController {
 		return questions;
 	}
 
+	@GetMapping("/surveys/{surveyId}/questions/{questionId}")
+	public Question getQuestionBySurveyIdAndQuestionId(@PathVariable String surveyId, @PathVariable String questionId) {
+		Question question = surveyService.getQuestionBySurveyIdAndQuestionId(surveyId, questionId);
+		if (question == null) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		return question;
+	}
+
 }

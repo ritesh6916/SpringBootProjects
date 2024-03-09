@@ -52,7 +52,21 @@ public class SurveyService {
 
 	public List<Question> getAllQuestionBySurveyId(String surveyId) {
 		Survey survey = getSurveyById(surveyId);
-		if(survey == null) return null;
+		if (survey == null)
+			return null;
 		return survey.getQuestions();
+	}
+
+	public Question getQuestionBySurveyIdAndQuestionId(String surveyId, String questionId) {
+		Survey survey = getSurveyById(surveyId);
+		if (survey == null)
+			return null;
+		List<Question> questions = survey.getQuestions();
+		for (Question q : questions) {
+			if (q.getId().equalsIgnoreCase(questionId)) {
+				return q;
+			}
+		}
+		return null;
 	}
 }
