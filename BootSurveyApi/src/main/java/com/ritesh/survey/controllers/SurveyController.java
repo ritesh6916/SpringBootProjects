@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -74,6 +75,16 @@ public class SurveyController {
 		boolean isDeleted = surveyService.deleteQuestionBySurveyIdAndQuestionId(surveyId, questionId);
 		if (isDeleted) {
 			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.notFound().build();
+	}
+
+	@PutMapping("/surveys/{surveyId}/questions/{questionId}")
+	public ResponseEntity<Object> updateQuestionBySurveyIdAndQuestionId(@PathVariable String surveyId,
+			@PathVariable String questionId, @RequestBody Question question) {
+		boolean ifUpdated = surveyService.updateQuestionBySurveyIdAndQuestionId(surveyId, questionId, question);
+		if (ifUpdated) {
+			return ResponseEntity.accepted().build();
 		}
 		return ResponseEntity.notFound().build();
 	}
