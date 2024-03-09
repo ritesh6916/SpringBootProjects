@@ -12,6 +12,9 @@ import com.ritesh.survey.templates.Survey;
 @Service
 public class SurveyService {
 
+	public SurveyService() {
+		
+	}
 	private static List<Survey> surveys = new ArrayList<>();
 
 	static {
@@ -21,7 +24,7 @@ public class SurveyService {
 				Arrays.asList("AWS", "Azure", "Google Cloud", "Oracle Cloud"), "Google Cloud");
 		Question q3 = new Question("03", "Most Popular DevOps Tool",
 				Arrays.asList("Kubernetes", "Docker", "Terraform", "Azure DevOps"), "Kubernetes");
-		Question q4 = new Question("03", "Diversed Cloud plateform for learing in terms of module",
+		Question q4 = new Question("04", "Diversed Cloud plateform for learing in terms of module",
 				Arrays.asList("AWS", "Azure", "Google Cloud", "Oracle Cloud"), "Azure");
 
 		List<Question> Cloudquestions = new ArrayList<>(Arrays.asList(q1, q2, q3, q4));
@@ -30,5 +33,10 @@ public class SurveyService {
 				Cloudquestions);
 
 		surveys.add(cloudServey);
+	}
+
+	public List<Survey> getAllSurveys() {
+		
+		return surveys;
 	}
 }
