@@ -23,11 +23,12 @@ public class SurveyService {
 				Arrays.asList("Kubernetes", "Docker", "Terraform", "Azure DevOps"), "Kubernetes");
 		Question q4 = new Question("03", "Diversed Cloud plateform for learing in terms of module",
 				Arrays.asList("AWS", "Azure", "Google Cloud", "Oracle Cloud"), "Azure");
-		
-		List<Question> Cloudquestions = new ArrayList<>(Arrays.asList(q1,q2,q3,q4));
-		
-		Survey cloudServey = new Survey("Cloud", "Cloud Plateforms", "Let's Find Most Liked Cloud Plateforms", Cloudquestions);
-		
+
+		List<Question> Cloudquestions = new ArrayList<>(Arrays.asList(q1, q2, q3, q4));
+
+		Survey cloudServey = new Survey("Cloud", "Cloud Plateforms", "Let's Find Most Liked Cloud Plateforms",
+				Cloudquestions);
+
 		surveys.add(cloudServey);
 	}
 }
