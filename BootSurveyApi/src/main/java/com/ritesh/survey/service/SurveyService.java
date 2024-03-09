@@ -3,6 +3,7 @@ package com.ritesh.survey.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Service;
 
@@ -74,5 +75,17 @@ public class SurveyService {
 		List<Question> allQuestions = getAllQuestionBySurveyId(surveyId);
 		allQuestions.add(question);
 		return question.getId();
+	}
+
+	public boolean deleteQuestionBySurveyIdAndQuestionId(String surveyId, String questionId) {
+		List<Question> allQuestionBySurveyId = getAllQuestionBySurveyId(surveyId);
+
+		if (allQuestionBySurveyId == null)
+			return false;
+
+		Predicate<? super Question> predicate = q -> q.getId().equalsIgnoreCase(questionId);
+
+		return allQuestionBySurveyId.removeIf(predicate);
+
 	}
 }
