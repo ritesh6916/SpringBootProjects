@@ -1,13 +1,18 @@
 package com.ritesh.survey.controllers;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.ritesh.survey.service.SurveyService;
 import com.ritesh.survey.templates.Question;
@@ -52,4 +57,13 @@ public class SurveyController {
 		return question;
 	}
 
+	@PostMapping("/surveys/{surveyId}/questions")
+	public ResponseEntity<Object> addNewQuestionBySurveyId(@PathVariable String surveyId,
+			@RequestBody Question question) {
+		String questionId = surveyService.addNewQuestionBySurveyId(surveyId, question);
+
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{questionId}").buildAndExpand(questionId)
+				.toUri();
+		return ResponseEntity.created(location).build();
+	}
 }

@@ -69,4 +69,10 @@ public class SurveyService {
 		}
 		return null;
 	}
+
+	public String addNewQuestionBySurveyId(String surveyId, Question question) {
+		List<Question> allQuestions = getAllQuestionBySurveyId(surveyId);
+		allQuestions.add(question);
+		return question.getId();
+	}
 }
