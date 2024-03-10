@@ -23,12 +23,13 @@ public class UserDetailsConnandLineRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		userRepository.save(new UserDetails("Ritesh", "ADMIN"));
-		userRepository.save(new UserDetails("Dummy", "ADMIN"));
+		userRepository.save(new UserDetails("Dummy", "USER"));
 		
 		List<UserDetails> users = userRepository.findAll();
 		for (UserDetails user : users) {
 			logger.info(user.toString());
 		}
+		logger.info("User with role ADMIN: "+userRepository.findByRole("ADMIN").toString());
 	}
 
 }
